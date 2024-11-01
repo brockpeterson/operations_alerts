@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?><alertContent>
+    <AlertDefinitions>
+        <AlertDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="AlertDefinition-1f76c1d7-07b9-4b51-a8f4-b61ef84d16da" name="VM Snapshot Old Alert" resourceKind="VirtualMachine" subType="19" type="15">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-06686883-a733-4780-bf74-c7e51eb3fbbf"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-e42d3071-cc47-47c2-aab5-f81824511def"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-8a682304-1d82-4a43-92f1-35a728616bdd"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-3401d46a-bb43-4a5f-a975-607743e7ec88"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-CASAdapter-SnapshotDeleteRecommendation"/>
+                    <Recommendation priority="2" ref="Recommendation-df-VMWARE-DeleteUnusedSnapshotsOfVm"/>
+                    <Recommendation priority="3" ref="Recommendation-df-VMWARE-DeleteOldSnapshotOfVm"/>
+                    <Recommendation priority="4" ref="Recommendation-df-VMWARE-ConsolidateToOneSnapshot"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="Datastore is consuming disk space as expected, but will soon run out of space" disableInBasePolicy="true" id="AlertDefinition-5ec288df-b779-487c-bdde-894aa862202b" name="Datastore Space Alert" resourceKind="Datastore" subType="20" type="18">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-3991999a-c320-4e47-9c84-fdef4f52efc7"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-48929f59-edf6-46e9-bf7e-27055a759747"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-e415b0d7-d5da-493b-a686-6bb18b624da3"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-0f94ffdd-e94f-44ce-b3f1-17333796d048"/>
+                </SymptomSets>
+                <Impact key="risk" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-StorageVMotionVM"/>
+                    <Recommendation priority="2" ref="Recommendation-df-VMWARE-DeleteUnusedTemplates"/>
+                    <Recommendation priority="3" ref="Recommendation-df-VMWARE-DeleteUnusedSnapshotsOfVm"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="ESXi Host Memory Utilization Alert" disableInBasePolicy="true" id="AlertDefinition-38c0a7d6-c485-4960-95df-005309656623" name="ESXi Host Memory Utilization Alert" resourceKind="HostSystem" subType="20" type="16">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-280dc5a6-0bd1-4b2e-9b9a-58ef067dc565"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-2f342073-a132-4227-b4f3-1f2ef4886123"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-05cbcdb7-c542-4e61-9d96-bd2fed37bf7e"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-f87404ee-075d-4d79-b531-693b9ec8ed4f"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-VmotionVmsOff"/>
+                    <Recommendation priority="2" ref="Recommendation-df-VMWARE-MoveSomeVMsToOtherHostForMem"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="VM CPU Utilization Alert" disableInBasePolicy="true" id="AlertDefinition-c2b0b7a8-76cf-4479-8625-dbe3275c9bdf" name="VM CPU Utilization Alert" resourceKind="VirtualMachine" subType="20" type="15">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-340ddf83-9408-4d96-bf9b-a7333d16bd78"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-38137384-dd62-4e22-a15e-5c83c8475fa3"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-9e4c958c-280c-4b77-8757-f7e65f3c215a"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-c3f6a9ae-e954-4128-be8f-6fab3ba0398d"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-AddMoreCapacityForVm"/>
+                    <Recommendation priority="2" ref="Recommendation-df-VMWARE-Increase-Remove-CpuLimits-Vm"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="ESXi Host has Rebooted" disableInBasePolicy="true" id="AlertDefinition-f4c61214-4cb8-4e1f-a022-352c72496a68" name="ESXi Host has Rebooted" resourceKind="HostSystem" subType="19" type="15">
+            <State severity="automatic">
+                <SymptomSets operator="and">
+                    <SymptomSet applyOn="self" operator="or" ref="SymptomDefinition-953be24d-4129-4f78-ba16-908337d15410"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-6d718ed5-b01f-4e4a-bbf4-cb1d0210c34c"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="VM Memory Utilization Alert" disableInBasePolicy="true" id="AlertDefinition-111f9e8e-1c1d-4314-bb60-f3001047987c" name="VM Memory Utilization Alert" resourceKind="VirtualMachine" subType="20" type="15">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-61d5df61-d6c1-4e77-b48d-571ecf5e46d5"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-60464798-4340-43e7-99e5-ab3ea8db9aa2"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-172aa1e2-5197-4f41-94a9-47be5e9180db"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-b26663f4-ff43-4389-be84-12b116a82daf"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-AddMoreMemoryForVm"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="One or more guest file systems of the virtual machine are running out of disk space. Check the symptom details to identify the affected guest file system" disableInBasePolicy="true" id="AlertDefinition-2b5942d6-a654-4c62-b152-1229879d91e9" name="VM Drive/Filesystem Space Alert" resourceKind="VirtualMachine" subType="20" type="16">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-2d07a637-dcc7-45c2-8694-317b6cc8c7b3"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-29731d09-094f-4692-bb11-b9e5523bd1be"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-bda9a680-7351-491a-b001-f3a7dbdd2959"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-c546e134-c833-423c-918b-f2ee8c3c4d45"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-AddMoreDiskToVM"/>
+                    <Recommendation priority="2" ref="Recommendation-df-VMWARE-GuestDiskCleanup"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="The VM has dropped outgoing packets. While received packets can be dropped by ESXi as they're not for the VM, transmit packets should not be dropped." disableInBasePolicy="true" id="AlertDefinition-2088e079-2afe-47e3-8aae-6a1b6ee453cd" name="VM Network Packet Drop Alert" resourceKind="VirtualMachine" subType="19" type="15">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="or" ref="SymptomDefinition-a7b7dcae-50e2-4376-a9ff-e204b4ef7f8a"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-08b904cb-675f-4eae-b908-9ea5e636022f"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-f4f340b0-f844-4f1d-a9b9-7203e4c9757d"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-f2c22ce5-9f6b-4415-a1a6-5cb057243261"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-CheckHighPktDrops"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="vSphere Cluster Memory Utilization Alert" disableInBasePolicy="true" id="AlertDefinition-6b459805-249a-40ad-8b34-0c7e8622da6b" name="vSphere Cluster Memory Utilization Alert" resourceKind="ClusterComputeResource" subType="20" type="16">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-ddc177c5-81f0-451d-bc3c-30526b5301a5"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-9e7e0fb1-72a6-4aa8-8883-c8e56031177a"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-c7872975-f2d2-4831-b9d3-1cfc63b4346d"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-51252449-0a47-4dc9-847a-b863847d935d"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-AddHosts"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="vSphere Cluster CPU Utilization Alert" disableInBasePolicy="true" id="AlertDefinition-b1890c0e-6ba2-4107-baa3-ba0e4ff9ca38" name="vSphere Cluster CPU Utilization Alert" resourceKind="ClusterComputeResource" subType="20" type="16">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-e682c644-ca53-47c8-b701-ca3b00aec46d"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-1b420638-9e39-460d-b890-580480e48c39"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-f4895f86-30dd-4cd6-832f-185b95aac0f7"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-fcdcb34b-bf51-493a-8e09-125607914920"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-AddMoreHostsForCPU"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="ESXi Host Network Packet Drop Alert" disableInBasePolicy="true" id="AlertDefinition-2db66be7-3173-4753-8e26-de6ab14f72bd" name="ESXi Host Network Packet Drop Alert" resourceKind="HostSystem" subType="19" type="16">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="or" ref="SymptomDefinition-3072b059-f6b4-4f6b-a91d-994e0926df14"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-a35a3ff8-bf6d-41ba-ad01-b7755eb7365f"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-182dfd71-8167-43df-a05e-05a62e30b93b"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-9b7b5b5b-511f-4a8e-969d-3c44f354c11c"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-UpgradeHostMem"/>
+                    <Recommendation priority="2" ref="Recommendation-df-VMWARE-MoveSomeVMsToOtherHostForMem"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+        <AlertDefinition adapterKind="VMWARE" description="ESXi Host CPU Utilization Alert" disableInBasePolicy="true" id="AlertDefinition-1cb507b6-760b-40d7-82ae-27d1737cab92" name="ESXi Host CPU Utilization Alert" resourceKind="HostSystem" subType="20" type="16">
+            <State severity="critical">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-1c43fea4-58dd-496f-a147-329008824269"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-7eba7b88-dd7f-46b1-a2b1-790b30212265"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-77a5483b-093c-45ac-b81e-fe6fd4ff3295"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-22e84252-8a08-4278-be1c-775b6271bbb1"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-MoveSomeVMsToOtherHostForCPU"/>
+                    <Recommendation priority="2" ref="Recommendation-df-VMWARE-VmotionVmsOff"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+    </AlertDefinitions>
+    <SymptomDefinitions>
+        <SymptomDefinition adapterKind="VMWARE" cancelCycle="3" disableInBasePolicy="true" id="SymptomDefinition-a7b7dcae-50e2-4376-a9ff-e204b4ef7f8a" name="Virtual Machine Total Transmitted Packets Dropped is greater than 10" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="net|droppedTx_summation_sum" operator="&gt;" thresholdType="static" type="metric" value="100.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-e42d3071-cc47-47c2-aab5-f81824511def" name="Condition_eb26645b-1e5e-418f-a64b-8fa593f5f496" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="diskspace|snapshot|snapshotAge" operator="&gt;" thresholdType="static" type="property" value="21.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-61d5df61-d6c1-4e77-b48d-571ecf5e46d5" name="Condition_934f4660-c5b1-48e6-a105-db41be82c9ee" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="99.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-953be24d-4129-4f78-ba16-908337d15410" name="Condition_967acd42-5be9-4f48-8e3d-0158a146864e" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="sys|uptime_latest" operator="&lt;" thresholdType="static" type="metric" value="300.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-f4f340b0-f844-4f1d-a9b9-7203e4c9757d" name="Condition_50ad4af6-93e0-4b6b-a73d-e4f828aa3937" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="net|droppedTx_summation" operator="&gt;" thresholdType="static" type="metric" value="80.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-8a682304-1d82-4a43-92f1-35a728616bdd" name="Condition_6a05eb47-acf4-48aa-bcd5-1e8ff6adfbfb" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="diskspace|snapshot|snapshotAge" operator="&gt;" thresholdType="static" type="property" value="14.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-e415b0d7-d5da-493b-a686-6bb18b624da3" name="Condition_f350b0d1-520f-4774-8b8f-29d548daccb9" resourceKind="Datastore" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="capacity|usedSpacePct" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-3401d46a-bb43-4a5f-a975-607743e7ec88" name="Condition_390a7a51-4fcb-4283-9f4f-cb11864bb5da" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="diskspace|snapshot|snapshotAge" operator="&gt;" thresholdType="static" type="property" value="7.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-05cbcdb7-c542-4e61-9d96-bd2fed37bf7e" name="Condition_a4bf279d-c486-4d12-8a29-d5f3bde72b07" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="80.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-9b7b5b5b-511f-4a8e-969d-3c44f354c11c" name="Condition_48ce51ac-bcee-4742-8ad8-4ab6c75cbc24" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="net|droppedTx_summation" operator="&gt;" thresholdType="static" type="metric" value="70.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-172aa1e2-5197-4f41-94a9-47be5e9180db" name="Condition_019eb4ff-fe0e-49e8-b32d-b46f6bb31c22" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-b26663f4-ff43-4389-be84-12b116a82daf" name="Condition_49c287ed-6d3c-47c9-8f9a-cb989fd929d5" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="85.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" cancelCycle="3" disableInBasePolicy="true" id="SymptomDefinition-3072b059-f6b4-4f6b-a91d-994e0926df14" name="Host System Total Transmitted Packets Dropped is greater than 100" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="net|droppedTx_summation_sum" operator="&gt;" thresholdType="static" type="metric" value="100.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-9e7e0fb1-72a6-4aa8-8883-c8e56031177a" name="Condition_e7623898-7d7a-4e1d-8fb1-858dbf01336e" resourceKind="ClusterComputeResource" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-2f342073-a132-4227-b4f3-1f2ef4886123" name="Condition_ad949510-3647-40a9-85ab-1129b631faf2" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-3991999a-c320-4e47-9c84-fdef4f52efc7" name="Condition_d57b9d93-d33d-4759-8d9e-f90741848503" resourceKind="Datastore" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="capacity|usedSpacePct" operator="&gt;" thresholdType="static" type="metric" value="99.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-77a5483b-093c-45ac-b81e-fe6fd4ff3295" name="Condition_65371807-0938-4ff3-a672-8615b8880822" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="cpu|usage_average" operator="&gt;" thresholdType="static" type="metric" value="80.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-e682c644-ca53-47c8-b701-ca3b00aec46d" name="Condition_f72cf1ba-caf2-4079-821e-659f168f297e" resourceKind="ClusterComputeResource" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="cpu|capacity_usagepct_average" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-1c43fea4-58dd-496f-a147-329008824269" name="Condition_44dad95b-58b3-4fc1-8f22-7b40094fab65" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="cpu|usage_average" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-60464798-4340-43e7-99e5-ab3ea8db9aa2" name="Condition_367ca6fb-1954-497c-8703-d73d6e7ac973" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-c3f6a9ae-e954-4128-be8f-6fab3ba0398d" name="Condition_0a0589cf-8eaa-4d02-b9b2-2fb7b2febd81" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="cpu|usage_average" operator="&gt;" thresholdType="static" type="metric" value="85.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-6d718ed5-b01f-4e4a-bbf4-cb1d0210c34c" name="Condition_38660e49-8017-4e95-9f07-ecd9c438d3bb" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="sys|uptime_latest" operator="&gt;" thresholdType="static" type="metric" value="600.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-7eba7b88-dd7f-46b1-a2b1-790b30212265" name="Condition_c37048cb-432c-485c-b0c7-b036d89e8846" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="cpu|usage_average" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-182dfd71-8167-43df-a05e-05a62e30b93b" name="Condition_a02ba423-2bd8-48d0-9e1a-32a2aba42889" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="net|droppedTx_summation" operator="&gt;" thresholdType="static" type="metric" value="80.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-c546e134-c833-423c-918b-f2ee8c3c4d45" name="Condition_7071e121-8824-40fd-8027-7699cd490e46" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="guestfilesystem|percentage_total" operator="&gt;" thresholdType="static" type="metric" value="85.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-22e84252-8a08-4278-be1c-775b6271bbb1" name="Condition_ea9088ef-1573-4306-a1b6-2b2bf2009f85" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="cpu|usage_average" operator="&gt;" thresholdType="static" type="metric" value="70.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-29731d09-094f-4692-bb11-b9e5523bd1be" name="Condition_303ef0cf-a2bd-41d3-8928-b509259197d3" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="guestfilesystem|percentage_total" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-08b904cb-675f-4eae-b908-9ea5e636022f" name="Condition_67d5e312-e631-4784-ac93-0f37649fcc16" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="net|droppedTx_summation" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-06686883-a733-4780-bf74-c7e51eb3fbbf" name="Condition_acd42455-7842-49b4-bbff-a9f22c6048cb" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="diskspace|snapshot|snapshotAge" operator="&gt;" thresholdType="static" type="property" value="28.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-48929f59-edf6-46e9-bf7e-27055a759747" name="Condition_9c5caeb0-c263-4c58-8052-0d9cdc57ba86" resourceKind="Datastore" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="capacity|usedSpacePct" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-340ddf83-9408-4d96-bf9b-a7333d16bd78" name="Condition_729959ba-123f-4246-b0cd-c5a22c671740" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="cpu|usage_average" operator="&gt;" thresholdType="static" type="metric" value="99.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-f87404ee-075d-4d79-b531-693b9ec8ed4f" name="Condition_83e1c169-9944-4819-9c69-1dbddc22d741" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="70.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-f4895f86-30dd-4cd6-832f-185b95aac0f7" name="Condition_4e34fc69-6d96-4ebc-9d7c-a7f4c33732a6" resourceKind="ClusterComputeResource" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="cpu|capacity_usagepct_average" operator="&gt;" thresholdType="static" type="metric" value="80.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-fcdcb34b-bf51-493a-8e09-125607914920" name="Condition_09db1a92-6124-49cf-a091-190b365bf4bc" resourceKind="ClusterComputeResource" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="cpu|capacity_usagepct_average" operator="&gt;" thresholdType="static" type="metric" value="70.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-1b420638-9e39-460d-b890-580480e48c39" name="Condition_abbcd44d-df78-44a7-b287-79b4aedd2ad8" resourceKind="ClusterComputeResource" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="cpu|capacity_usagepct_average" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-f2c22ce5-9f6b-4415-a1a6-5cb057243261" name="Condition_706f968a-4d4e-4cec-aaba-6651bc819ef8" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="net|droppedTx_summation" operator="&gt;" thresholdType="static" type="metric" value="70.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-ddc177c5-81f0-451d-bc3c-30526b5301a5" name="Condition_c7072596-fde4-436c-9081-f0bc61e32de8" resourceKind="ClusterComputeResource" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-c7872975-f2d2-4831-b9d3-1cfc63b4346d" name="Condition_c73cb231-2198-4277-85df-a6f0503a4b06" resourceKind="ClusterComputeResource" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="80.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-a35a3ff8-bf6d-41ba-ad01-b7755eb7365f" name="Condition_d1657591-14a9-4364-a241-c7505f027f17" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="net|droppedTx_summation" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-bda9a680-7351-491a-b001-f3a7dbdd2959" name="Condition_50eca93a-ae1b-49c3-9420-bc10d431ddd6" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="guestfilesystem|percentage_total" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-38137384-dd62-4e22-a15e-5c83c8475fa3" name="Condition_4d66e45b-6ae7-4b92-a5a9-4c2fdfd396bb" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="cpu|usage_average" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-280dc5a6-0bd1-4b2e-9b9a-58ef067dc565" name="Condition_1d7f0e66-4072-4789-801c-a6c630dffdcb" resourceKind="HostSystem" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-9e4c958c-280c-4b77-8757-f7e65f3c215a" name="Condition_f749eb49-41fa-4412-9326-ead8bf68d987" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="cpu|usage_average" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-2d07a637-dcc7-45c2-8694-317b6cc8c7b3" name="Condition_8de22671-d314-4540-ac9a-a9a0d8d7069b" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="guestfilesystem|percentage_total" operator="&gt;" thresholdType="static" type="metric" value="99.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-0f94ffdd-e94f-44ce-b3f1-17333796d048" name="Condition_b00ac235-3b25-4341-aa2e-0429b6ee37ac" resourceKind="Datastore" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="capacity|usedSpacePct" operator="&gt;" thresholdType="static" type="metric" value="85.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-51252449-0a47-4dc9-847a-b863847d935d" name="Condition_46aca1be-8af8-4d22-b3e1-f24bb1db143e" resourceKind="ClusterComputeResource" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="mem|usage_average" operator="&gt;" thresholdType="static" type="metric" value="70.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+    </SymptomDefinitions>
+    <Recommendations>
+        <Recommendation key="Recommendation-df-VMWARE-AddHosts">
+            <Description>Add more hosts to the cluster to increase memory capacity</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-MoveSomeVMsToOtherHostForMem">
+            <Description>Use vMotion to migrate some virtual machines with high memory workload to other hosts that have available memory capacity.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-AddMoreMemoryForVm">
+            <Description>Add more memory for this virtual machine</Description>
+            <Action actionAdapterKey="VMWARE" actionKey="Set Memory For VM" targetAdapterKey="VMWARE" targetResourceKind="VirtualMachine"/>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-MoveSomeVMsToOtherHostForCPU">
+            <Description>Use vMotion to migrate some virtual machines with high CPU workload to other hosts that have available CPU capacity.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-GuestDiskCleanup">
+            <Description>Reclaim disk space using in-guest disk cleanup mechanisms.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-StorageVMotionVM">
+            <Description>Use Storage vMotion to migrate some virtual machines to a different datastore</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-DeleteOldSnapshotOfVm">
+            <Description>If the virtual machine has multiple snapshots, delete the older snapshots</Description>
+            <Action actionAdapterKey="VMWARE" actionKey="Delete Unused Snapshots For VM" targetAdapterKey="VMWARE" targetResourceKind="VirtualMachine"/>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-ConsolidateToOneSnapshot">
+            <Description>Reduce the number of snapshots by consolidating the snapshots into 1 snapshot. Use the vSphere Client to perform this operation. Select the virtual machine, then right-click, and select 'Snapshot -&gt; Consolidate'.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-AddMoreDiskToVM">
+            <Description>Add a new virtual hard disk or expand the existing disk of the virtual machine. You must first remove all snapshots before expanding an existing disk. After completing this, use a guest OS specific procedure to expand the file system on the new or expanded disk.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-VmotionVmsOff">
+            <Description>Use vMotion to migrate some virtual machines off the host or Cluster</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-CheckHighPktDrops">
+            <Description>Check if the packet drops are due to high CPU resource utilization or uplink bandwidth utilization. Use vMotion to migrate the virtual machine that the port is attached to to a different host.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-AddMoreHostsForCPU">
+            <Description>Add more hosts to the cluster to increase CPU capacity.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-UpgradeHostMem">
+            <Description>Upgrade the host or use a host that has larger memory capacity.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-Increase-Remove-CpuLimits-Vm">
+            <Description>Increase or remove the CPU limits on this virtual machine</Description>
+            <Action actionAdapterKey="VMWARE" actionKey="Set CPU Resources For VM" targetAdapterKey="VMWARE" targetResourceKind="ClusterComputeResource"/>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-AddMoreCapacityForVm">
+            <Description>Add more CPU Capacity for this virtual machine</Description>
+            <Action actionAdapterKey="VMWARE" actionKey="Set CPU Count For VM" targetAdapterKey="VMWARE" targetResourceKind="VirtualMachine"/>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-DeleteUnusedTemplates">
+            <Description>Delete any unused templates on the datastore.</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-CASAdapter-SnapshotDeleteRecommendation">
+            <Description>Delete the Snapshot if Snapshot Space is reclaimable. &lt;a href="/ui/index.action#/home/capacity-reclaim/reclaim"&gt;Click here for details&lt;/a&gt;</Description>
+        </Recommendation>
+        <Recommendation key="Recommendation-df-VMWARE-DeleteUnusedSnapshotsOfVm">
+            <Description>Delete unused snapshots of virtual machines from datastore</Description>
+            <Action actionAdapterKey="VMWARE" actionKey="Delete Unused Snapshots For Datastore" targetAdapterKey="VMWARE" targetResourceKind="Datastore"/>
+        </Recommendation>
+    </Recommendations>
+</alertContent>
