@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><alertContent>
+    <AlertDefinitions>
+        <AlertDefinition adapterKind="VMWARE_INFRA_HEALTH" description="vCenter SSL/STS/Root Certificate Expiring" disableInBasePolicy="true" id="AlertDefinition-f9f43c4c-67db-42fd-82a0-a4391a46db39" name="vCenter SSL/STS/Root Certificate Expiring" resourceKind="CERTIFICATE" subType="19" type="15">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and">
+                        <Symptom ref="SymptomDefinition-67bbc85c-3642-4397-b0cc-a358a9359350"/>
+                        <Symptom ref="SymptomDefinition-ee40a6a3-c1ea-4c31-951c-036dd301907a"/>
+                    </SymptomSet>
+                    <SymptomSet applyOn="self" operator="and">
+                        <Symptom ref="SymptomDefinition-6f30fe11-83e1-40a0-a47e-6a3ed9ecfa78"/>
+                        <Symptom ref="SymptomDefinition-3aa743c8-ceaf-4a1f-abe6-338ced75aa9b"/>
+                    </SymptomSet>
+                    <SymptomSet applyOn="self" operator="and">
+                        <Symptom ref="SymptomDefinition-6e656725-93f4-4eed-b2be-4ee36fe7accb"/>
+                        <Symptom ref="SymptomDefinition-e5f442d7-cef1-41d6-9133-95c2ee4cef79"/>
+                    </SymptomSet>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-9954f826-c346-4b10-931c-8e33e2212dec"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+            </State>
+        </AlertDefinition>
+    </AlertDefinitions>
+    <SymptomDefinitions>
+        <SymptomDefinition adapterKind="VMWARE_INFRA_HEALTH" disableInBasePolicy="true" id="SymptomDefinition-3aa743c8-ceaf-4a1f-abe6-338ced75aa9b" name="Condition_9d89f707-01c9-4e97-8a88-b579b0822b87" resourceKind="CERTIFICATE" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="CERTIFICATE_INFO|NO_OF_DAYS_TO_EXPIRE" operator="&lt;=" thresholdType="static" type="property" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE_INFRA_HEALTH" disableInBasePolicy="true" id="SymptomDefinition-ee40a6a3-c1ea-4c31-951c-036dd301907a" name="Condition_63db807d-d4e7-49c4-9009-f51c598411dc" resourceKind="CERTIFICATE" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="CERTIFICATE_INFO|NO_OF_DAYS_TO_EXPIRE" operator="&lt;=" thresholdType="static" type="property" value="120.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE_INFRA_HEALTH" disableInBasePolicy="true" id="SymptomDefinition-6e656725-93f4-4eed-b2be-4ee36fe7accb" name="Condition_11373d3c-d58e-413f-b51c-10bc66e5fbef" resourceKind="CERTIFICATE" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="CERTIFICATE_INFO|NO_OF_DAYS_TO_EXPIRE" operator="&gt;" thresholdType="static" type="property" value="30.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE_INFRA_HEALTH" disableInBasePolicy="true" id="SymptomDefinition-67bbc85c-3642-4397-b0cc-a358a9359350" name="Condition_d93e58a4-9597-4551-ac92-7805e1dfdf6c" resourceKind="CERTIFICATE" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="CERTIFICATE_INFO|NO_OF_DAYS_TO_EXPIRE" operator="&gt;" thresholdType="static" type="property" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE_INFRA_HEALTH" disableInBasePolicy="true" id="SymptomDefinition-6f30fe11-83e1-40a0-a47e-6a3ed9ecfa78" name="Condition_f134d377-0288-403a-82d3-18d91eaeff05" resourceKind="CERTIFICATE" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="CERTIFICATE_INFO|NO_OF_DAYS_TO_EXPIRE" operator="&gt;" thresholdType="static" type="property" value="60.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE_INFRA_HEALTH" disableInBasePolicy="true" id="SymptomDefinition-9954f826-c346-4b10-931c-8e33e2212dec" name="Condition_817a8797-2fbf-4c6d-813c-fcc14ff9a2f7" resourceKind="CERTIFICATE" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="CERTIFICATE_INFO|NO_OF_DAYS_TO_EXPIRE" operator="&lt;=" thresholdType="static" type="property" value="30.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE_INFRA_HEALTH" disableInBasePolicy="true" id="SymptomDefinition-e5f442d7-cef1-41d6-9133-95c2ee4cef79" name="Condition_33fea339-5f8d-437b-b7f8-3901f246f30b" resourceKind="CERTIFICATE" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="CERTIFICATE_INFO|NO_OF_DAYS_TO_EXPIRE" operator="&lt;=" thresholdType="static" type="property" value="60.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+    </SymptomDefinitions>
+</alertContent>
