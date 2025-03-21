@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><alertContent>
+    <AlertDefinitions>
+        <AlertDefinition adapterKind="VMWARE" description="vCenter TLS Certificate Expiring " disableInBasePolicy="true" id="AlertDefinition-f0ba88fb-bc17-42a9-b530-ddd606e8ad03" name="vCenter TLS Certificate Expiring" resourceKind="VMwareAdapter Instance" subType="19" type="15">
+            <State severity="automatic">
+                <SymptomSets operator="or">
+                    <SymptomSet applyOn="self" operator="and">
+                        <Symptom ref="SymptomDefinition-40b02f95-6285-44f8-8e7a-95dadc9fd42b"/>
+                        <Symptom ref="SymptomDefinition-253aa8b6-2e3a-4383-aa92-737fae5117a4"/>
+                    </SymptomSet>
+                    <SymptomSet applyOn="self" operator="and">
+                        <Symptom ref="SymptomDefinition-50cb3f17-4553-4eb9-9bc0-1e1db09d7b7a"/>
+                        <Symptom ref="SymptomDefinition-7cd54d6e-9211-45e9-add2-c5b4086fa85c"/>
+                    </SymptomSet>
+                    <SymptomSet applyOn="self" operator="and">
+                        <Symptom ref="SymptomDefinition-733c5b13-efa4-4a7f-9bf7-634a9b20a6a0"/>
+                        <Symptom ref="SymptomDefinition-9ac37837-9493-41ba-8b34-c5887ec450eb"/>
+                    </SymptomSet>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-83c09b6c-d0a0-486a-91a4-23907f11b792"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+            </State>
+        </AlertDefinition>
+    </AlertDefinitions>
+    <SymptomDefinitions>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-40b02f95-6285-44f8-8e7a-95dadc9fd42b" name="Condition_b05bb7f7-9a8b-4463-a8ee-c341f6a649b9" resourceKind="VMwareAdapter Instance" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="CertificateSummaryPropGroup:Primary|NumberOfDaysToExpire" operator="&gt;" thresholdType="static" type="property" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-733c5b13-efa4-4a7f-9bf7-634a9b20a6a0" name="Condition_f94c0f71-351e-49d3-9a82-8cbdd6fedc19" resourceKind="VMwareAdapter Instance" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="CertificateSummaryPropGroup:Primary|NumberOfDaysToExpire" operator="&lt;=" thresholdType="static" type="property" value="60.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-50cb3f17-4553-4eb9-9bc0-1e1db09d7b7a" name="Condition_e059ef4a-6cb9-4c2a-ac36-a29d46f3f5b7" resourceKind="VMwareAdapter Instance" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="CertificateSummaryPropGroup:Primary|NumberOfDaysToExpire" operator="&lt;=" thresholdType="static" type="property" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-83c09b6c-d0a0-486a-91a4-23907f11b792" name="Condition_6ca7cb72-655e-4196-b4d5-fe4b4562cd38" resourceKind="VMwareAdapter Instance" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="CertificateSummaryPropGroup:Primary|NumberOfDaysToExpire" operator="&lt;" thresholdType="static" type="property" value="30.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-7cd54d6e-9211-45e9-add2-c5b4086fa85c" name="Condition_4f07c65a-91b5-48c8-87b8-0232ee7fc5d7" resourceKind="VMwareAdapter Instance" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="CertificateSummaryPropGroup:Primary|NumberOfDaysToExpire" operator="&gt;" thresholdType="static" type="property" value="60.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-9ac37837-9493-41ba-8b34-c5887ec450eb" name="Condition_0025fe78-ee3f-41a1-8c1e-61c1bcd5a572" resourceKind="VMwareAdapter Instance" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="CertificateSummaryPropGroup:Primary|NumberOfDaysToExpire" operator="&gt;" thresholdType="static" type="property" value="30.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-253aa8b6-2e3a-4383-aa92-737fae5117a4" name="Condition_d4008889-8e1d-46e8-af94-790ddda2ff7f" resourceKind="VMwareAdapter Instance" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="CertificateSummaryPropGroup:Primary|NumberOfDaysToExpire" operator="&lt;=" thresholdType="static" type="property" value="120.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+    </SymptomDefinitions>
+</alertContent>
