@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><alertContent>
+    <AlertDefinitions>
+        <AlertDefinition adapterKind="VMWARE" description="Guest file system /storage/log is running out of disk space" disableInBasePolicy="true" id="AlertDefinition-2c9382b1-c248-4a97-880e-08d610c4b689" name="Guest file system /storage/log is running out of disk space" resourceKind="VirtualMachine" subType="20" type="16">
+            <State severity="automatic">
+                <SymptomSets operator="and">
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-29da2963-d307-4e23-a0a8-53ebf29f151e"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-7f1674a2-71cf-45cb-889a-532e66fa1a82"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-a8e50d03-fc35-499f-965d-18e9f536bf45"/>
+                    <SymptomSet applyOn="self" operator="and" ref="SymptomDefinition-34cfd387-e868-4caa-a74a-9f84d2f48a44"/>
+                </SymptomSets>
+                <Impact key="health" type="badge"/>
+                <Recommendations>
+                    <Recommendation priority="1" ref="Recommendation-df-VMWARE-AddMoreDiskToVM"/>
+                </Recommendations>
+            </State>
+        </AlertDefinition>
+    </AlertDefinitions>
+    <SymptomDefinitions>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-7f1674a2-71cf-45cb-889a-532e66fa1a82" name="Condition_8395b14d-54d7-44fb-a7d5-81b24425c353" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="warning">
+                <Condition key="guestfilesystem:/storage/log|percentage" operator="&gt;" thresholdType="static" type="metric" value="85.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-29da2963-d307-4e23-a0a8-53ebf29f151e" name="Condition_899170aa-eca2-4e58-a6c2-f2b808fa1b95" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="info">
+                <Condition key="guestfilesystem:/storage/log|percentage" operator="&gt;" thresholdType="static" type="metric" value="80.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-34cfd387-e868-4caa-a74a-9f84d2f48a44" name="Condition_61a62ea6-e80c-4122-807e-c326c070abfc" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="critical">
+                <Condition key="guestfilesystem:/storage/log|percentage" operator="&gt;" thresholdType="static" type="metric" value="95.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+        <SymptomDefinition adapterKind="VMWARE" disableInBasePolicy="true" id="SymptomDefinition-a8e50d03-fc35-499f-965d-18e9f536bf45" name="Condition_1af3b7d4-f087-41fb-8a8c-f0f09dbfaa83" resourceKind="VirtualMachine" symptomDefType="condition_self">
+            <State severity="immediate">
+                <Condition key="guestfilesystem:/storage/log|percentage" operator="&gt;" thresholdType="static" type="metric" value="90.0" valueType="numeric"/>
+            </State>
+        </SymptomDefinition>
+    </SymptomDefinitions>
+    <Recommendations>
+        <Recommendation key="Recommendation-df-VMWARE-AddMoreDiskToVM">
+            <Description>Add a new virtual hard disk or expand the existing disk of the virtual machine. You must first remove all snapshots before expanding an existing disk. After completing this, use a guest OS specific procedure to expand the file system on the new or expanded disk.</Description>
+        </Recommendation>
+    </Recommendations>
+</alertContent>
